@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
+const cookieParser = require('cookie-parser');
+
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
@@ -16,6 +18,7 @@ const app = express();
 
 //  Middleware to allow json data
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
