@@ -92,7 +92,7 @@ async function google(req, res, next) {
           Math.random().toString(9).slice(-4),
         email,
         password: hashedPassword,
-        profilePicture: googlePhotoUrl,
+        profilePhoto: googlePhotoUrl,
       });
 
       await newUser.save();
