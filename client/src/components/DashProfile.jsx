@@ -67,7 +67,6 @@ export default function DashProfile() {
       dispatch(updateStart());
       const res = await fetch(`api/user/update/${currentUser._id}`, {
         method: "PUT",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -179,7 +178,7 @@ export default function DashProfile() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
-          accept="image/*"
+          accept=".jpeg, .jpg, .png"
           onChange={handleImageChange}
           ref={filePickerRef}
           hidden
