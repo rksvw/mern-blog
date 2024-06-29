@@ -121,7 +121,7 @@ export default function UpdatePost() {
             type="text"
             placeholder="Title"
             required
-            _id="title"
+            id="title"
             className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
