@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import CallToAction from "../components/CallToAction";
 import { Button, Spinner } from "flowbite-react";
 
 export default function PostPage() {
@@ -69,6 +69,7 @@ export default function PostPage() {
         dangerouslySetInnerHTML={{ __html: post && post.content }}
         className="p-3 max-w-2xl mx-auto w-full post-content"
       ></div>
+      <div className="max-w-4xl mx-auto w-full"><CallToAction /></div>
     </main>
   );
 }
