@@ -3,14 +3,14 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { Table, Modal, Button } from "flowbite-react";
 // import { Link } from "react-router-dom";
-import {FaTimes, FaCheck} from "react-icons/fa";
+import { FaTimes, FaCheck } from "react-icons/fa";
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
   const [users, setUsers] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
-    const [userIdToDelete, setUserIdToDelete] = useState("");
+  const [userIdToDelete, setUserIdToDelete] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -49,27 +49,23 @@ export default function DashUsers() {
     }
   };
 
-    const handleDeleteUser = async () => {
-      setShowModal(false);
-      try {
-        const res = await fetch(
-          `/api/user/deleteuser/${userIdToDelete}/${currentUser._id}`,
-          {
-            method: "DELETE",
-          }
-        );
-        const data = await res.json();
-        if (!res.ok) {
-          console.log(data.message);
-        } else {
-          users((prev) =>
-            prev.filter((post) => post._id !== userIdToDelete)
-          );
-        }
-      } catch (err) {
-        console.log(err.message);
+  const handleDeleteUser = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
+        setShowModal(false);
       }
-    };
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
@@ -99,7 +95,13 @@ export default function DashUsers() {
                   </Table.Cell>
                   <Table.Cell>{user.username}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>{user.isAdmin ? (<FaCheck className="text-green-500" />): (<FaTimes className="text-red-500" />)}</Table.Cell>
+                  <Table.Cell>
+                    {user.isAdmin ? (
+                      <FaCheck className="text-green-500" />
+                    ) : (
+                      <FaTimes className="text-red-500" />
+                    )}
+                  </Table.Cell>
                   <Table.Cell>
                     <span
                       className="font-medium text-red-500 hover:underline cursor-pointer"
@@ -141,7 +143,9 @@ export default function DashUsers() {
               Are you sure you want to delete this user?
             </h3>
             <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleDeleteUser}>Yes, I&apos;m sure</Button>
+              <Button color="failure" onClick={handleDeleteUser}>
+                Yes, I&apos;m sure
+              </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
                 No, cancel
               </Button>
