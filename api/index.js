@@ -5,6 +5,7 @@ const userRoutes = require("./routes/user.route");
 const authRoutes = require("./routes/auth.route");
 const cookieParser = require("cookie-parser");
 const postRoutes = require("./routes/post.route");
+const commentRoutes = require("./routes/comment.route");
 
 mongoose
   .connect(process.env.MONGO)
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
+app.use("/api/comment", commentRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
