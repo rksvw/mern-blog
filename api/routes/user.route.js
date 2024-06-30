@@ -5,6 +5,7 @@ const {
   deleteUser,
   signout,
   getUsers,
+  getUser,
 } = require("../controllers/user.controller");
 const { verifyToken } = require("../utils/verifyUser");
 const router = express.Router();
@@ -14,3 +15,4 @@ module.exports = router.put("/update/:userId", verifyToken, updateUser);
 module.exports = router.delete("/delete/:userId", verifyToken, deleteUser);
 module.exports = router.post("/signout", signout);
 module.exports = router.get("/getUsers", verifyToken, getUsers);
+module.exports = router.get("/:userId", getUser);
