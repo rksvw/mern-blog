@@ -10,7 +10,7 @@ export default function CallToAction() {
             Checkout these resources with 100 JavaScript Projects
           </p>
           <Button
-            gradientToDuoTone="purpleToPink"
+            gradientDuoTone="purpleToPink"
             className="rounded-tl-xl rounded-bl-none"
           >
             <a href="/" target="_blank" rel="noopener noreferrer">

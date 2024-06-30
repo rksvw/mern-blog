@@ -1,13 +1,17 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { FaThumbsUp } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
-export default function Comment({ comment }) {
+export default function Comment({ totalComments, onLike }) {
+  const { currentUser } = useSelector((state) => state.user);
+
   const [user, setUser] = useState({});
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`/api/user/${comment.userId}`);
+        const res = await fetch(`/api/user/${totalComments.userId}`);
         const data = await res.json();
         if (res.ok) {
           setUser(data);
@@ -17,7 +21,8 @@ export default function Comment({ comment }) {
       }
     };
     getUser();
-  }, [comment]);
+  }, [totalComments]);
+
   return (
     <>
       <div className="flex p-4 border-b dark:border-gray-600 text-sm">
@@ -34,10 +39,30 @@ export default function Comment({ comment }) {
               {user ? `@${user.username}` : "anonymous user"}
             </span>
             <span className="text-gray-500 text-xs">
-              {moment(comment.createdAt).fromNow()}
+              {moment(totalComments.createdAt).fromNow()}
             </span>
           </div>
-          <p className="text-gray-500 pb-2">{comment.content}</p>
+          <p className="text-gray-500 pb-2">{totalComments.content}</p>
+
+          <div className="flex items-center pt-2 text-xs border-t dark:border-gray-700 max-w-fit gap-2">
+            <button
+              className={`text-gray-400 hover:text-blue-500 ${
+                currentUser &&
+                totalComments.likes.includes(currentUser._id) &&
+                "!text-blue-500"
+              }`}
+              type="button"
+              onClick={() => onLike(totalComments._id)}
+            >
+              <FaThumbsUp className="text-sm" />
+            </button>
+            <p className="text-gray-400">
+              {totalComments.numberOfLikes > 0 &&
+                totalComments.numberOfLikes +
+                  " " +
+                  (totalComments.numberOfLikes === 1 ? "like" : "likes")}
+            </p>
+          </div>
         </div>
       </div>
     </>
