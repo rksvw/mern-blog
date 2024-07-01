@@ -77,13 +77,21 @@ export default function CommentSection(postId) {
                   likes: data.likes,
                   numberOfLikes: data.likes.length,
                 }
-              : comments
+              : comments;
           })
         );
       }
     } catch (err) {
       console.log(err.message);
     }
+  };
+
+  const handleEdit = async (totalComments, editContent) => {
+    setTotalComments(
+      totalComments.map((c) =>
+        c._id === totalComments._id ? { ...c, content: editContent } : c
+      )
+    );
   };
 
   return (
@@ -153,6 +161,7 @@ export default function CommentSection(postId) {
               key={comments._id}
               totalComments={comments}
               onLike={handleLike}
+              onEdit={handleEdit}
             />
           ))}
         </>
