@@ -7,10 +7,12 @@ const {
   likeComment,
   editComment,
   deleteComment,
+  commentGet,
 } = require("../controllers/comment.controller");
 
 module.exports = router.post("/create", verifyToken, createComment);
 module.exports = router.get("/getcomments/:postId", getComment);
+module.exports = router.get("/comments", verifyToken, commentGet);
 module.exports = router.put(
   "/likecomment/:commentId",
   verifyToken,
