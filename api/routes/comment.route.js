@@ -6,6 +6,7 @@ const {
   getComment,
   likeComment,
   editComment,
+  deleteComment,
 } = require("../controllers/comment.controller");
 
 module.exports = router.post("/create", verifyToken, createComment);
@@ -19,4 +20,10 @@ module.exports = router.put(
   "/editcomment/:commentId",
   verifyToken,
   editComment
+);
+
+module.exports = router.delete(
+  "/deletecomment/:commentId",
+  verifyToken,
+  deleteComment
 );
