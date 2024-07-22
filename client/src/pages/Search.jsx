@@ -15,8 +15,6 @@ const Search = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(posts);
-
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
