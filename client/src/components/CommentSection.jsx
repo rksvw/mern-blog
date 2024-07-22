@@ -73,15 +73,15 @@ export default function CommentSection({ postId }) {
       if (res.ok) {
         const data = await res.json();
         setTotalComments(
-          totalComments.map((comments) => {
+          totalComments.map((comments) =>
             comments._id === commentId
               ? {
                   ...comments,
                   likes: data.likes,
                   numberOfLikes: data.likes.length,
                 }
-              : comments;
-          })
+              : comments
+          )
         );
       }
     } catch (err) {
