@@ -56,8 +56,9 @@ export default function SignUp() {
             </span>
           </Link>
           <p className="text-sm mt-5">
-            This is a demo project. You can sign up with your email and password
-            or with Google.
+            Be the role model for future generation,
+            <br />
+            <strong className="text-teal-300">Join us Now</strong>
           </p>
         </div>
         {/* right */}

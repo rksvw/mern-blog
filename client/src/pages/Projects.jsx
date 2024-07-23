@@ -5,9 +5,9 @@ export default function Projects() {
     <div className="min-h-screen max-w-2xl mx-auto flex justify-center items-center flex-col gap-6 p-3">
       <h1 className="text-3xl font-semibold">Projects</h1>
       <p className="text-md text-gray-500">
-        Build fun and engaging projects while learning HTML, CSS, and
-        JavaScript!
+        Project Count: 0
       </p>
+      <p className="text-md text-teal-300">We are working...</p>
       <CallToAction />
     </div>
   );

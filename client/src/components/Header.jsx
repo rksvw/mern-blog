@@ -58,7 +58,7 @@ export default function Header() {
           Wratsout
         </span>
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="">
         <TextInput
           type="text"
           placeholder="Search..."
