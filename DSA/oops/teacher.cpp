@@ -27,6 +27,15 @@ public:
         this->salary = salary;
     }
 
+    // copy constructor
+    Teacher(Teacher &orgObj) {
+        cout << "I am custom copy constructor\n";
+        this->name = orgObj.name;
+        this->dept = orgObj.dept;
+        this->subject = orgObj.subject;
+        this->salary = orgObj.salary;
+    }
+
     // Methods / Member functions
     void changeDept(string newDept)
     {
@@ -64,15 +73,9 @@ public:
 
 int main()
 {
-    Teacher t1; // Internally call constructor when creating new object
-    Teacher t2("Ram", "ComputerScience", "C++", 26000);
+    Teacher t2("Ritik", "ComputerScience", "C++", 26000);
+    Teacher t1(t2); // Internally call constructor when creating new object
 
-    t1.name = "Ritik";
-    t1.dept = "Computer Science";
-    t1.subject = "C++";
-    t1.setSalary(25000);
-    cout << t1.name << endl;
-    cout << t1.getSalary() << endl;
-    t2.getInfo();
+    t1.getInfo();
     return 0;
 }
