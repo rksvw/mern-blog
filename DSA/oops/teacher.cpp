@@ -104,10 +104,41 @@ public:
     }
 };
 
+class Person {
+public:
+    string name;
+    int age;
+
+    // Person(string name, int age) {
+    //     this->name = name;
+    //     this->age = age;
+    // }
+
+    Person() {
+
+    }
+};
+
+// Inheritance
+class Developer : public Person {
+public:
+    int id;
+
+    void getInfo() {
+        cout << "Developer name : " << name << endl;
+        cout << "Developer id : " << id << endl;
+        cout << "Developer age : " << age << endl;
+    }
+};
+
 int main()
 {
-    Student s1("Rahul Kumar", 8.9);
+    Developer d1;
+    d1.name = "Ritik Sharma";
+    d1.age = 20;
+    d1.id = 96096;
 
-    s1.getInfo();
+    d1.getInfo();
+
     return 0;
 }
