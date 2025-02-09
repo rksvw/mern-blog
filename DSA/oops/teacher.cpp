@@ -71,11 +71,36 @@ public:
     string username; // public data
 };
 
+class Student {
+public:
+    string name;
+    double* cgpaPtr;
+
+    Student(string name, double cgpa) {
+        this->name = name;
+        cgpaPtr = new double;
+        *cgpaPtr = cgpa;
+    }
+
+    Student(Student &obj) {
+        this->name = obj.name;
+        this->cgpaPtr = obj.cgpaPtr;
+    }
+
+    void getInfo() {
+        cout << "name : " << name << endl;
+        cout << "cgpa : " << *cgpaPtr << endl;
+    }
+};
+
 int main()
 {
-    Teacher t2("Ritik", "ComputerScience", "C++", 26000);
-    Teacher t1(t2); // Internally call constructor when creating new object
+    Student s1("Rahul Kumar", 8.9);
+    Student s2(s1);
+    s2.name = "Neha Kumar";
 
-    t1.getInfo();
+    s1.getInfo();
+    *(s2.cgpaPtr) = 9.2;
+    s1.getInfo();
     return 0;
 }
