@@ -19,14 +19,29 @@ public:
         dept = newDept;
     }
 
-    void setSalary(double s) {
+    void setSalary(double s)
+    {
         salary = s;
     }
 
-    double getSalary() {
+    double getSalary()
+    {
         return salary;
     }
 };
+
+// Encapsulation
+class Account
+{
+private:
+    double balance;
+    string password; // data hiding
+
+public:
+    string accountId;
+    string username; // public data
+};
+
 
 int main()
 {
