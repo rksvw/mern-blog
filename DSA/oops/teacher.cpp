@@ -59,6 +59,8 @@ public:
     }
 };
 
+
+
 // Encapsulation
 class Account
 {
@@ -70,6 +72,8 @@ public:
     string accountId;
     string username; // public data
 };
+
+
 
 class Student {
 public:
@@ -88,6 +92,12 @@ public:
         *cgpaPtr = *obj.cgpaPtr;
     }
 
+    // Destructor
+    ~Student() {
+        cout << "HI, I delete everything\n";
+        delete cgpaPtr;
+    }
+
     void getInfo() {
         cout << "name : " << name << endl;
         cout << "cgpa : " << *cgpaPtr << endl;
@@ -97,12 +107,7 @@ public:
 int main()
 {
     Student s1("Rahul Kumar", 8.9);
-    Student s2(s1);
-    s2.name = "Neha Kumar";
 
     s1.getInfo();
-    *(s2.cgpaPtr) = 9.2;
-    s1.getInfo();
-    s2.getInfo();
     return 0;
 }
