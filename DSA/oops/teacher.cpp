@@ -28,7 +28,8 @@ public:
     }
 
     // copy constructor
-    Teacher(Teacher &orgObj) {
+    Teacher(Teacher &orgObj)
+    {
         cout << "I am custom copy constructor\n";
         this->name = orgObj.name;
         this->dept = orgObj.dept;
@@ -59,8 +60,6 @@ public:
     }
 };
 
-
-
 // Encapsulation
 class Account
 {
@@ -73,70 +72,89 @@ public:
     string username; // public data
 };
 
-
-
-class Student {
+class Student
+{
 public:
     string name;
-    double* cgpaPtr;
+    double *cgpaPtr;
 
-    Student(string name, double cgpa) {
+    Student(string name, double cgpa)
+    {
         this->name = name;
         cgpaPtr = new double;
         *cgpaPtr = cgpa;
     }
 
-    Student(Student &obj) {
+    Student(Student &obj)
+    {
         this->name = obj.name;
         cgpaPtr = new double;
         *cgpaPtr = *obj.cgpaPtr;
     }
 
     // Destructor
-    ~Student() {
+    ~Student()
+    {
         cout << "HI, I delete everything\n";
         delete cgpaPtr;
     }
 
-    void getInfo() {
+    void getInfo()
+    {
         cout << "name : " << name << endl;
         cout << "cgpa : " << *cgpaPtr << endl;
     }
 };
 
-class Person {
+class Person
+{
 public:
     string name;
     int age;
 
-    // Person(string name, int age) {
-    //     this->name = name;
-    //     this->age = age;
+    Person(string name, int age)
+    {
+        this->name = name;
+        this->age = age;
+    }
+
+    // Person() {
+    //     cout << "Parent constructor\n";
     // }
 
-    Person() {
-
+    ~Person()
+    {
+        cout << "Parent destructor\n";
     }
 };
 
 // Inheritance
-class Developer : public Person {
+class Developer : public Person
+{
 public:
     int id;
 
-    void getInfo() {
+    Developer(string name, int age, int id) : Person(name, age)
+    {
+        this->id = id;
+        cout << "Child constructor\n";
+    }
+    void getInfo()
+    {
         cout << "Developer name : " << name << endl;
         cout << "Developer id : " << id << endl;
         cout << "Developer age : " << age << endl;
+    }
+
+    ~Developer()
+    {
+        cout << "Child destructor\n";
     }
 };
 
 int main()
 {
-    Developer d1;
-    d1.name = "Ritik Sharma";
-    d1.age = 20;
-    d1.id = 96096;
+    Developer d1("Ritik Sharma", 20, 96096);
 
     d1.getInfo();
 
